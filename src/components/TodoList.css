@@ -1,0 +1,44 @@
+.listing {
+    margin-top: 20px;
+  }
+  
+  .list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: #e0e0e0;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    color: black;
+    
+  }
+  
+  .icon {
+    cursor: pointer;
+    color: red;
+    margin-left: 10px;
+  }
+  
+  .edit {
+    cursor: pointer;
+    color: white;
+    border: 2px solid black;
+    background: green;
+    border-radius: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+ 
+  }
+  
+  .delete {
+    cursor: pointer;
+    color: white;
+    border: 2px solid black;
+    background-color: red;
+    padding: 5px;
+    border-radius: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    
+  }
+  

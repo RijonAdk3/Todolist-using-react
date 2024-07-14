@@ -1,25 +1,48 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Todoinput from './components/Todoinput';
+import TodoList from './components/TodoList';
+import Navbar from './components/Navbar';
 import './App.css';
 
-function App() {
+const App = () => {
+  const [listTodo, setListTodo] = useState([]);
+  const [currentTodo, setCurrentTodo] = useState({ text: '', index: null });
+
+  const addList = (inputText) => {
+    setListTodo([...listTodo, { text: inputText }]);
+  };
+
+  const deleteItem = (index) => {
+    const newListTodo = listTodo.filter((_, i) => i !== index);
+    setListTodo(newListTodo);
+    if (currentTodo.index === index) setCurrentTodo({ text: '', index: null });
+  };
+
+  const editItem = (index) => {
+    setCurrentTodo({ text: listTodo[index].text, index });
+  };
+
+  const editTodo = (inputText) => {
+    const newListTodo = listTodo.map((item, index) =>
+      index === currentTodo.index ? { ...item, text: inputText } : item
+    );
+    setListTodo(newListTodo);
+    setCurrentTodo({ text: '', index: null });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main-container">
+      <Navbar />
+      <div className="center-container">
+        <Todoinput
+          addList={addList}
+          editTodo={editTodo}
+          currentTodo={currentTodo}
+        />
+        <TodoList listTodo={listTodo} deleteItem={deleteItem} editItem={editItem} />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
